@@ -41,7 +41,6 @@ double ROUND(double u1, double u2, double u3)
   
   double g=z0;
 
-
   if(ROUND_Method==0){
   
     if(z0>0.0 && z0<=0.5){
@@ -63,8 +62,20 @@ double ROUND(double u1, double u2, double u3)
     }
   
   }
-
+  
+  
   if(ROUND_Method==1){
+  
+  double w1=1.0/square(1.0+25.0*z0*z0);
+  
+  double w2=1.0/square(1.0+25.0*(1.0-z0)*(1.0-z0));
+  
+  g=(5.0/6.0+2.0/3.0*w1-1.0/3.0*w2)*z0+1.0/3.0-1.0/3.0*w1+1.0/6.0*w2;
+  
+  
+  }  
+
+  if(ROUND_Method==2){
   
     if(z0<=0.0){
     double a=-0.5*z0;
@@ -95,7 +106,7 @@ double ROUND(double u1, double u2, double u3)
   }
 
 
-  if(ROUND_Method==2){
+  if(ROUND_Method==3){
   
   double a1=1.0+12.0*z0*z0;
   double a2=1.0+5.0*(z0-1.0)*(z0-1.0);
@@ -109,6 +120,7 @@ double ROUND(double u1, double u2, double u3)
 
   g=(p1*(1.0-wc1)+p2*wc1)*(1.0-wc2)+p3*wc2;
   }
+
 
   return g*(u3-u1)+u1;
 
