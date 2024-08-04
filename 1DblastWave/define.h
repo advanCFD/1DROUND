@@ -14,7 +14,7 @@
 
 #define scheme 2       // 1:WENO5 scheme 2:ROUND scheme
 #define WENO_Method 0  // 0:WENO-JS 1:WENO-Z
-#define ROUND_Method 1  // 0:ROUND_A+ 1:ROUND_W 2:ROUND_L  3:ROUND_L+  
+#define ROUND_Method 0  // 0:ROUND_A+ 1:ROUND_W 2:ROUND_L  3:ROUND_L+  
 #define time_in 3      // 1:euler 2:RK3 3:RK5,4
 #define riemann_sol 2  // 1:HLL 2:HLLC
 #define bc 2           // 1:neumann 2:wall
