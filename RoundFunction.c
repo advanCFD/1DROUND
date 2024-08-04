@@ -36,6 +36,23 @@ double ROUNDAplus(double u1, double u2, double u3)
 
 }
 
+//dissipative ROUND scheme with a continuous function Eq. 6.6. 
+double ROUNDW(double u1, double u2, double u3) 
+{
+
+  double zeps  = 1.0e-20;
+
+  double z0=(u2-u1+zeps)/(u3-u1+zeps);
+
+  double w1=1.0/square(1.0+25.0*z0*z0);
+  
+  double w2=1.0/square(1.0+25.0*(1.0-z0)*(1.0-z0));
+  
+  double g=(5.0/6.0+2.0/3.0*w1-1.0/3.0*w2)*z0+1.0/3.0-1.0/3.0*w1+1.0/6.0*w2;
+  
+  return g*(u3-u1)+u1;
+
+}
 
 //low-dissipation ROUND: improve the capability of resolving critical points. see Eq (7.1) amd Eq (7.7)
 double ROUNDL(double u1, double u2, double u3)  
@@ -104,3 +121,54 @@ double ROUNDLplus(double u1, double u2, double u3)
   return g*(u3-u1)+u1;
 
 }
+
+//alternative formulation to Eq.(7.5).    See Eq.(7.4)
+/*double ROUNDLplus(double u1, double u2, double u3) 
+{
+
+  double zeps  = 1.0e-20;
+
+  double z0=(u2-u1+zeps)/(u3-u1+zeps);
+  
+  double g=z0;
+  
+  if(z0<=0.0){
+   double a1=1.0+5.0*z0*z0;
+   double w1=1.0-1.0/a1/a1/a1/a1;
+
+   g=(1.0/3.0+5.0/6.0*z0)*w1;
+
+   }else if(z0>0.0 && z0<=0.5){
+
+   double a1=1.0+300.0*(z0-0.5)*(z0-0.5)*(z0-0.5)*(z0-0.5);
+
+   double w1=1.0/a1/a1;
+
+   double p2=2.5*z0;
+  
+   double p=(1.0/3.0+5.0/6.0*z0)*w1+p2*(1.0-w1);
+
+   g=min(p,p2);
+
+   }else if(z0>0.5 && z0<=1.0){
+   double a1=1.0+800.0*(z0-0.5)*(z0-0.5)*(z0-0.5)*(z0-0.5);
+   double w1=1.0/a1/a1;
+
+   double p2=0.05*(z0-1.0)+1.0;
+  
+   double p=(1.0/3.0+5.0/6.0*z0)*w1+p2*(1.0-w1);
+
+   g=min(p,p2);
+
+
+  }else{
+   double a1=1.0+20.0*(z0-1.0)*(z0-1.0);
+   double w1=1.0/a1/a1;
+
+   g=(1.0/3.0+5.0/6.0*z0)*(1.0-w1)+z0*w1;
+
+  }
+
+  return g*(u3-u1)+u1;
+
+}*/
