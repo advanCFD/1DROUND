@@ -23,8 +23,8 @@
 #define NX 400         // sod,lax 100;    blast wave, density interaction 400;     Leblanc 200  Sedov 801; 
 // 600 cells for density interaction, WENO3, final_t=0.18
 
-#define beta_S 1.1     // Value of small��
-#define beta_B 1.6     // Value of large�� 
+#define beta_S 1.1     // Value of small
+#define beta_B 1.6     // Value of large 
 #define method 1       // 1:thinc 2:TVD
 #define lim 4          // 1:UW 2:minmod 3:superbee 4:VanLeer
 
